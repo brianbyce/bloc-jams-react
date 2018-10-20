@@ -14,7 +14,8 @@ class Album extends Component {
      this.state = {
        album: album,
        currentSong: album.songs[0],
-       isPlaying: false
+       isPlaying: false,
+       isEntered: false
      };
 
      this.audioElement = document.createElement('audio');
@@ -46,31 +47,56 @@ class Album extends Component {
    			this.play();
    		}
    	}
- 
+  
 	render () {
 		return(
 			<section className="album">
 				<section id="album-info">
-           			<img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
+           			<img 
+                  id="album-cover-art" 
+                  src={this.state.album.albumCover} 
+                  alt={this.state.album.title}
+                />
            			<div className="album-details">
              			<h1 id="album-title">{this.state.album.title}</h1>
              			<h2 className="artist">{this.state.album.artist}</h2>
              			<div id="release-info">{this.state.album.releaseInfo}</div>
           			</div>
-         		</section>
-         		    <table id="song-list">
+         </section>
+         		  <table id="song-list">
            				<colgroup>
            				  <col id="song-number-column" />
            				  <col id="song-title-column" />
            				  <col id="song-duration-column" />
            				</colgroup>  
-           				<tbody>
+           			<tbody>
            				{
            					this.state.album.songs.map( (song, index) =>
-           						<tr className="song" key={index} onClick={() => this.handleSongClick(song)}>{index+1})   Title: {song.title} Length: {song.duration}sec</tr>
+           						<tr 
+                        className="song" 
+                        key={index} 
+                        onClick={() => this.handleSongClick(song)}
+                        onMouseEnter={() => this.setState({isEntered: index+1})}
+                        onMouseLeave={() => this.setState({isEntered: false})}
+                      >
+                        <td>
+                          <button>
+                            {(this.state.currentSong.title === song.title)?
+                              <span className={this.state.isPlaying ? "ion-md-pause" : "ion-md-play"}/>
+                              :
+                              (this.state.isEntered === index+1) ? 
+                              <span className="ion-md-play"></span>
+                              :
+                              <span className="song-number">{index+1}</span>
+                            }
+                            </button>
+                        </td>
+                        <td>Title: {song.title}</td>
+                        <td>Length: {song.duration}sec</td>
+                      </tr>
            					)
            				}
-           				</tbody>
+           			</tbody>
          			</table>
 			</section>
 		);
