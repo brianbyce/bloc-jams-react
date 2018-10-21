@@ -124,10 +124,12 @@ class Album extends Component {
                   <div id="release-info">{this.state.album.releaseInfo}</div>
                 </div>
          </section>
-              <table id="song-list">
+              <table id="song-list" align="center" className="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
                   <colgroup>
                     <col id="song-number-column" />
                     <col id="song-title-column" />
+                    <col id="song-name-column" />
+                    <col id="song-length-column" />
                     <col id="song-duration-column" />
                   </colgroup>  
                 <tbody>
@@ -142,7 +144,7 @@ class Album extends Component {
 
                       >
                         <td>
-                          <button>
+                          <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                             {(this.state.currentSong.title === song.title)?
                               <span className={this.state.isPlaying ? "ion-md-pause" : "ion-md-play"}/>
                               :
@@ -153,8 +155,10 @@ class Album extends Component {
                             }
                             </button>
                         </td>
-                        <td>Title: {song.title}</td>
-                        <td>Length: {this.formatTime(song.duration)}</td>
+                        <td>Title:</td>
+                        <td>{song.title}</td>
+                        <td>Length:</td>
+                        <td>{this.formatTime(song.duration)}</td>
                       </tr>
                     )
                   }

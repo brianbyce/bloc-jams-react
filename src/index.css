@@ -1,5 +1,17 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: roboto;
+  background-color: rgb(230,230,250);
 }
+
+#time-control {
+	width: 300px;
+	margin: 0 auto;
+}
+
+#volume-control {
+	width: 300px;
+	margin: 0 auto;
+}
+

@@ -5,13 +5,13 @@ class PlayerBar extends Component {
 		return (
 			<section className="player-bar">
 				<section id="buttons">
-					<button id="previous" onClick={this.props.handlePreviousClick}>
+					<button id="previous" onClick={this.props.handlePreviousClick} className= "mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 						<span className="ion-md-skip-backward"></span>
 					</button>
-           			<button id="play-pause" onClick={this.props.handleSongClick}>
+           			<button id="play-pause" onClick={this.props.handleSongClick} className= "mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
              			<span className={this.props.isPlaying ? 'ion-md-pause' : 'ion-md-play'}></span>
            			</button>
-           			<button id="next" onClick={this.props.handleNextClick}>
+           			<button id="next" onClick={this.props.handleNextClick} className= "mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
              			<span className="ion-md-skip-forward"></span>
            			</button>
          		</section>
@@ -19,7 +19,7 @@ class PlayerBar extends Component {
            			<div className="current-time">{this.props.formatTime(this.props.currentTime)}</div>
            				<input 
            					type="range" 
-           					className="seek-bar" 
+           					className="mdl-slider mdl-js-slider" 
            					value={(this.props.currentTime / this.props.duration) || 0}
            					max="1"
            					min="0"
@@ -32,10 +32,11 @@ class PlayerBar extends Component {
            			<div className="icon ion-md-volume-low"></div>
            				<input 
            					type="range" 
-           					className="seek-bar" 
+           					className="mdl-slider mdl-js-slider" 
            					value={this.props.volume} 
            					max="1"
            					min="0"
+           					width="300px"
            					step="0.05"
            					onChange={this.props.handleVolumeChange}
            				/>
