@@ -49,10 +49,11 @@ class Album extends Component {
 
     formatTime(time) {
       if(isNaN(time)) {return "-:--"; }
-      const min = Math.floor(time);
-      const timeMin = Math.floor(time/60);
-      const timeSec = min % 60;
-      let timeString = timeMin + ':' + timeSec;
+      const sec = Math.floor(parseFloat(time));
+      const min = Math.floor(sec/60);
+      var remainingSec = sec - (min * 60) ;
+      if(remainingSec < 10) {remainingSec = ('0'+ remainingSec)}
+      let timeString = min + ':' + remainingSec;
       return timeString;
     }
 
